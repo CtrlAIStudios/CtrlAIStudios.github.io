@@ -26,6 +26,9 @@
     <title>CTRL+AI Studios | Soluções em Software</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='70' fill='%2300e5ff'%3E⌃%3C/text%3E%3C/svg%3E">
     
+    <!-- Font Awesome 6 (gratuito) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-96XXQYGSG1"></script>
     <script>
@@ -102,10 +105,9 @@
             font-size: 1.6rem;
             font-weight: 700;
             letter-spacing: -0.5px;
-            color: white; /* Garante que o texto base seja branco */
+            color: white;
         }
 
-        /* Language switcher */
         .lang-switch {
             display: flex;
             gap: 8px;
@@ -384,7 +386,6 @@
             color: var(--text-muted);
         }
 
-        /* Contact form */
         .contact-card {
             text-align: center;
             background: var(--card-bg);
@@ -439,11 +440,29 @@
             margin: 20px 0;
         }
 
-        .social-links {
+        .social-share {
+            margin: 30px 0 20px;
+        }
+        .social-share p {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .social-icons {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            color: var(--primary-cyan);
+            transform: translateY(-3px);
         }
 
         footer {
@@ -484,6 +503,9 @@
                 justify-content: center;
                 gap: 15px;
             }
+            .social-icons a {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -493,7 +515,6 @@
     <div class="container">
         <div class="nav-bar">
             <a href="#" class="logo">
-                <!-- Logo imagem (Logo.png na raiz) - corrigido case-sensitive -->
                 <img src="Logo.png" alt="CTRL+AI Studios Logo" class="logo-img" loading="lazy">
                 <div class="logo-text">
                     <span style="color: var(--primary-cyan);">C</span><span style="color: white;">trl+</span><span style="color: var(--primary-cyan);">AI</span><span style="color: white;"> Studios</span>
@@ -601,7 +622,6 @@
                 <h2 data-i18n="contact-title">Vamos construir algo inteligente?</h2>
                 <p data-i18n="contact-desc">Parcerias, dúvidas ou feedback sobre o YTMaster — entre em contato.</p>
                 
-                <!-- Formulário Formspree - método POST simples -->
                 <form class="contact-form" action="https://formspree.io/f/xkopaene" method="POST">
                     <div class="form-group">
                         <label for="name" data-i18n="form-name">Nome</label>
@@ -622,9 +642,20 @@
                 <div class="contact-email">
                     📧 <span id="email-protected"></span>
                 </div>
+
+                <!-- Ícones de compartilhamento social -->
+                <div class="social-share">
+                    <p data-i18n="share-text">📢 Compartilhe este site:</p>
+                    <div class="social-icons">
+                        <a href="#" id="share-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" id="share-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" id="share-telegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.linkedin.com/in/jordan-augusto-s/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
                 <div class="social-links">
                     <a href="https://github.com/CtrlAIStudios" class="btn btn-github" style="background:#fff; color:#000;">GitHub</a>
-                    <a href="https://www.linkedin.com/in/jordan-augusto-s/" class="btn btn-dark" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
             </div>
         </section>
@@ -658,126 +689,75 @@
     emailLink.innerText = `${user}@${domain}`;
     emailElement.appendChild(emailLink);
 
-    // Dicionário de traduções (Português e Inglês)
+    // Compartilhamento dinâmico (Facebook, WhatsApp, Telegram)
+    const currentUrl = encodeURIComponent(window.location.href);
+    const shareText = encodeURIComponent("CTRL+AI Studios - Software e Automação Inteligente. Conheça o YTMaster!");
+    
+    document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+    document.getElementById('share-whatsapp').href = `https://wa.me/?text=${shareText}%20${currentUrl}`;
+    document.getElementById('share-telegram').href = `https://t.me/share/url?url=${currentUrl}&text=${shareText}`;
+
+    // Dicionário de traduções (mantido igual)
     const translations = {
         pt: {
-            "nav-project": "Projeto",
-            "nav-studio": "Estúdio",
-            "nav-expertise": "Expertise",
-            "nav-contact": "Contato",
-            "hero-title": "Inteligência aplicada ao software",
-            "hero-desc": "Automação, segurança e design centrado no usuário. Criamos ferramentas que resolvem problemas reais com tecnologia de ponta.",
-            "status-active": "● Ativo · Flagship",
-            "project-desc": "Aplicação desktop inteligente para gerenciar, automatizar e organizar playlists do YouTube. Desenvolvida com foco absoluto em segurança de dados: utiliza Row-Level Security (RLS), segue as políticas de dados do Google API Services e oferece total transparência para o usuário.",
-            "btn-github": "GitHub do Projeto",
-            "btn-privacy": "Política de Privacidade",
-            "btn-terms": "Termos de Serviço",
-            "services-title": "O que fazemos",
-            "service1-title": "Automação Inteligente",
-            "service1-desc": "Workflows que economizam tempo usando IA e integração robusta com APIs.",
-            "service2-title": "Segurança por Design",
-            "service2-desc": "RLS, criptografia e conformidade com políticas Google/third-party.",
-            "service3-title": "Aplicações Desktop",
-            "service3-desc": "Electron, Tauri ou nativas: performance e experiência rica.",
-            "service4-title": "Backend & APIs",
-            "service4-desc": "Node.js, Python, Go — arquiteturas serverless ou tradicionais.",
+            "nav-project": "Projeto", "nav-studio": "Estúdio", "nav-expertise": "Expertise", "nav-contact": "Contato",
+            "hero-title": "Inteligência aplicada ao software", "hero-desc": "Automação, segurança e design centrado no usuário. Criamos ferramentas que resolvem problemas reais com tecnologia de ponta.",
+            "status-active": "● Ativo · Flagship", "project-desc": "Aplicação desktop inteligente para gerenciar, automatizar e organizar playlists do YouTube. Desenvolvida com foco absoluto em segurança de dados: utiliza Row-Level Security (RLS), segue as políticas de dados do Google API Services e oferece total transparência para o usuário.",
+            "btn-github": "GitHub do Projeto", "btn-privacy": "Política de Privacidade", "btn-terms": "Termos de Serviço",
+            "services-title": "O que fazemos", "service1-title": "Automação Inteligente", "service1-desc": "Workflows que economizam tempo usando IA e integração robusta com APIs.",
+            "service2-title": "Segurança por Design", "service2-desc": "RLS, criptografia e conformidade com políticas Google/third-party.",
+            "service3-title": "Aplicações Desktop", "service3-desc": "Electron, Tauri ou nativas: performance e experiência rica.",
+            "service4-title": "Backend & APIs", "service4-desc": "Node.js, Python, Go — arquiteturas serverless ou tradicionais.",
             "about1": "Fundado em 2024, o CTRL+AI Studios nasce da interseção entre controle preciso (CTRL) e inteligência artificial. Não somos apenas mais um estúdio de software: construímos ferramentas que respeitam o usuário, com código aberto e práticas transparentes.",
             "about2": "Nossa abordagem prioriza a privacidade desde a primeira linha de código. Todas as integrações com APIs (como Google, Stripe, etc) seguem rigorosamente as políticas de uso de dados, e adotamos Row-Level Security em bancos de dados para isolar informações sensíveis.",
             "about3": "YTMaster é o primeiro de vários produtos que virão. Acreditamos em automação sem sacrificar o controle — daí o nome CTRL+AI.",
-            "values-title": "📌 Nossos valores",
-            "value1": "🔹 Privacidade em primeiro lugar",
-            "value2": "🔹 Open source como padrão",
-            "value3": "🔹 Documentação clara",
-            "value4": "🔹 Automação ética",
-            "contact-title": "Vamos construir algo inteligente?",
-            "contact-desc": "Parcerias, dúvidas ou feedback sobre o YTMaster — entre em contato.",
-            "form-name": "Nome",
-            "form-email": "E-mail",
-            "form-message": "Mensagem",
-            "form-submit": "Enviar mensagem",
-            "footer-rights": "Todos os direitos reservados.",
-            "footer-privacy": "Política de Privacidade",
-            "footer-terms": "Termos de Serviço",
-            "footer-commitment": "Comprometidos com a segurança de dados e transparência total."
+            "values-title": "📌 Nossos valores", "value1": "🔹 Privacidade em primeiro lugar", "value2": "🔹 Open source como padrão", "value3": "🔹 Documentação clara", "value4": "🔹 Automação ética",
+            "contact-title": "Vamos construir algo inteligente?", "contact-desc": "Parcerias, dúvidas ou feedback sobre o YTMaster — entre em contato.",
+            "form-name": "Nome", "form-email": "E-mail", "form-message": "Mensagem", "form-submit": "Enviar mensagem",
+            "footer-rights": "Todos os direitos reservados.", "footer-privacy": "Política de Privacidade", "footer-terms": "Termos de Serviço", "footer-commitment": "Comprometidos com a segurança de dados e transparência total.",
+            "share-text": "📢 Compartilhe este site:"
         },
         en: {
-            "nav-project": "Project",
-            "nav-studio": "Studio",
-            "nav-expertise": "Expertise",
-            "nav-contact": "Contact",
-            "hero-title": "Intelligence applied to software",
-            "hero-desc": "Automation, security and user-centered design. We build tools that solve real problems with cutting-edge technology.",
-            "status-active": "● Active · Flagship",
-            "project-desc": "Intelligent desktop application to manage, automate and organize YouTube playlists. Built with absolute focus on data security: uses Row-Level Security (RLS), follows Google API Services User Data Policies and offers full transparency to the user.",
-            "btn-github": "GitHub Repository",
-            "btn-privacy": "Privacy Policy",
-            "btn-terms": "Terms of Service",
-            "services-title": "What we do",
-            "service1-title": "Intelligent Automation",
-            "service1-desc": "Time-saving workflows using AI and robust API integration.",
-            "service2-title": "Security by Design",
-            "service2-desc": "RLS, encryption and compliance with Google/third-party policies.",
-            "service3-title": "Desktop Applications",
-            "service3-desc": "Electron, Tauri or native: performance and rich experience.",
-            "service4-title": "Backend & APIs",
-            "service4-desc": "Node.js, Python, Go — serverless or traditional architectures.",
+            "nav-project": "Project", "nav-studio": "Studio", "nav-expertise": "Expertise", "nav-contact": "Contact",
+            "hero-title": "Intelligence applied to software", "hero-desc": "Automation, security and user-centered design. We build tools that solve real problems with cutting-edge technology.",
+            "status-active": "● Active · Flagship", "project-desc": "Intelligent desktop application to manage, automate and organize YouTube playlists. Built with absolute focus on data security: uses Row-Level Security (RLS), follows Google API Services User Data Policies and offers full transparency to the user.",
+            "btn-github": "GitHub Repository", "btn-privacy": "Privacy Policy", "btn-terms": "Terms of Service",
+            "services-title": "What we do", "service1-title": "Intelligent Automation", "service1-desc": "Time-saving workflows using AI and robust API integration.",
+            "service2-title": "Security by Design", "service2-desc": "RLS, encryption and compliance with Google/third-party policies.",
+            "service3-title": "Desktop Applications", "service3-desc": "Electron, Tauri or native: performance and rich experience.",
+            "service4-title": "Backend & APIs", "service4-desc": "Node.js, Python, Go — serverless or traditional architectures.",
             "about1": "Founded in 2024, CTRL+AI Studios is born from the intersection of precise control (CTRL) and artificial intelligence. We are not just another software studio: we build tools that respect the user, with open source and transparent practices.",
             "about2": "Our approach prioritizes privacy from the first line of code. All API integrations (Google, Stripe, etc.) strictly follow data usage policies, and we adopt Row-Level Security in databases to isolate sensitive information.",
             "about3": "YTMaster is the first of several products to come. We believe in automation without sacrificing control — hence the name CTRL+AI.",
-            "values-title": "📌 Our values",
-            "value1": "🔹 Privacy first",
-            "value2": "🔹 Open source as standard",
-            "value3": "🔹 Clear documentation",
-            "value4": "🔹 Ethical automation",
-            "contact-title": "Let's build something intelligent?",
-            "contact-desc": "Partnerships, questions or feedback about YTMaster — get in touch.",
-            "form-name": "Name",
-            "form-email": "Email",
-            "form-message": "Message",
-            "form-submit": "Send message",
-            "footer-rights": "All rights reserved.",
-            "footer-privacy": "Privacy Policy",
-            "footer-terms": "Terms of Service",
-            "footer-commitment": "Committed to data security and full transparency."
+            "values-title": "📌 Our values", "value1": "🔹 Privacy first", "value2": "🔹 Open source as standard", "value3": "🔹 Clear documentation", "value4": "🔹 Ethical automation",
+            "contact-title": "Let's build something intelligent?", "contact-desc": "Partnerships, questions or feedback about YTMaster — get in touch.",
+            "form-name": "Name", "form-email": "Email", "form-message": "Message", "form-submit": "Send message",
+            "footer-rights": "All rights reserved.", "footer-privacy": "Privacy Policy", "footer-terms": "Terms of Service", "footer-commitment": "Committed to data security and full transparency.",
+            "share-text": "📢 Share this site:"
         }
     };
 
-    // Função para aplicar o idioma
     function setLanguage(lang) {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[lang] && translations[lang][key]) {
-                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = translations[lang][key];
-                } else {
-                    el.innerText = translations[lang][key];
-                }
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = translations[lang][key];
+                else el.innerText = translations[lang][key];
             }
         });
-        // Atualizar classe ativa dos botões
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            if (btn.getAttribute('data-lang') === lang) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
+            if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+            else btn.classList.remove('active');
         });
         localStorage.setItem('preferred_language', lang);
     }
 
-    // Event listeners para os botões de idioma
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const lang = btn.getAttribute('data-lang');
-            setLanguage(lang);
-        });
+        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
     });
-
-    // Carregar idioma salvo ou detectar navegador
     const savedLang = localStorage.getItem('preferred_language');
     const browserLang = navigator.language.startsWith('pt') ? 'pt' : 'en';
-    const initialLang = savedLang || browserLang;
-    setLanguage(initialLang);
+    setLanguage(savedLang || browserLang);
 </script>
 </body>
 </html>
